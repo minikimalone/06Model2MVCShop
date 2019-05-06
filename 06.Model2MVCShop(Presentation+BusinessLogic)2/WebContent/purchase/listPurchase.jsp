@@ -79,26 +79,27 @@ function fncGetList(currentPage) {
 		<td align="left">${purchase.orderDate}</td>
 		<td></td>
 		<td align="left">
-		
-		
-		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '2')}">
-		배송중 상태입니다.
+		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '0  ')}">
+		판매
 		</c:if>
-		<c:if test="${! empty p.tranCode && (p.tranCode eq '1')}">
-		구매완료 상태입니다.
+		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '1  ')}">
+		구매완료 
 		</c:if>
-		<c:if test="${! empty p.tranCode && (p.tranCode eq '3')}">
-		배송완료 상태입니다.
-		</c:if>				
+		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '2  ')}">
+		배송중 
+		</c:if>
+		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '3  ')}">
+		배송완료  
+		</c:if>
 		</td>
 		<td></td>
 		
 		<td align="left">
 				
-		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '2')}">
+		<c:if test="${! empty purchase.tranCode && (purchase.tranCode eq '2  ')}">
 		<a href= "/updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3">물건 도착</a>
 		</c:if>
-		<c:if test="${! empty purchase.tranCode && !(purchase.tranCode eq '2')}">
+		<c:if test="${! empty purchase.tranCode && !(purchase.tranCode eq '2  ')}">
 			 
 		</c:if>
 		
@@ -106,7 +107,7 @@ function fncGetList(currentPage) {
 		
 	</tr>
 	<tr>
-		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
+		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
 	</c:forEach>
 	

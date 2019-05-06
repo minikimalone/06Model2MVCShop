@@ -19,7 +19,10 @@ import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 
 import com.model2.mvc.service.domain.Product;
+import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.purchase.PurchaseService;
+import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 
 
 //==> 惑前包府 Controller
@@ -133,7 +136,7 @@ public class ProductController {
 	
 	
 	@RequestMapping("/updateProduct.do")
-	public String updateProduct( @ModelAttribute("product") Product product ) throws Exception{
+	public String updateProduct( @ModelAttribute("product") Product product) throws Exception{
 
 		System.out.println("/updateProduct.do");
 		//Business Logic
@@ -146,7 +149,7 @@ public class ProductController {
 	
 	
 	@RequestMapping("/listProduct.do")
-	public String listProduct( @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
+	public String listProduct( @ModelAttribute("purchase") Purchase purchase, @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
 		
 		System.out.println("/listProduct.do");
 		
@@ -154,8 +157,6 @@ public class ProductController {
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
-		
-
 		
 		
 		// Business logic 荐青
@@ -170,6 +171,26 @@ public class ProductController {
 		model.addAttribute("resultPage", resultPage);
 		model.addAttribute("search", search);
 		
+		
+		System.out.println(purchase.getTranCode());
 		return "forward:/product/listProduct.jsp";
+	}
+	
+	
+	@RequestMapping("/updateTranCodeByProdAction.do")
+	public String updateTranCodeByProdAction( @RequestParam("prodNo") int prodNo, @RequestParam("tranCode") String tranCode, @ModelAttribute("product") Product product ) throws Exception{
+
+		System.out.println("/updateTranCodeByProdAction.do");
+		//Business Logic
+
+		PurchaseService purchaseService = new PurchaseServiceImpl();
+		Purchase purchase = purchaseService.getPurchase2(prodNo);
+		purchase.setTranCode(tranCode);
+		
+		purchaseService.updateTranCode(purchase);
+		
+		
+		
+		return "redirect:/listProduct.do?menu=manage";
 	}
 }

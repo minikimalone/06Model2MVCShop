@@ -85,10 +85,11 @@ public class PurchaseController {
 		
 		Purchase purchase = purchaseService.getPurchase(tranNo);
 	
+		purchase.setDivyDate(purchase.getDivyDate().substring(0,10));
 		
 		model.addAttribute("purchase", purchase);
 		
-		return "forward:/purchase/getPurchaseView.jsp";
+		return "forward:/purchase/getPurchase.jsp";
 	}
 	
 	

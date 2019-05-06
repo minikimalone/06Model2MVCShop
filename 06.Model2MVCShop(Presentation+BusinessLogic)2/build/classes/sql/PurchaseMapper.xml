@@ -24,16 +24,14 @@
 		</resultMap>
 		
 		
-		
+	
 	<select id="getPurchase" parameterType="int" resultMap="purchaseSelectMap">
-		
-		SELECT 
-		prod_no, buyer_id, payment_option, receiver_name, receiver_phone, demailaddr, dlvy_request, dlvy_date, order_date, tran_status_code, tran_no
+		SELECT
+		TRAN_NO , DEMAILADDR , BUYER_ID , PROD_NO , DLVY_DATE , DLVY_REQUEST , ORDER_DATA , PAYMENT_OPTION ,
+		RECEIVER_NAME , RECEIVER_PHONE , TRAN_STATUS_CODE 
 		FROM transaction
-		WHERE tran_no = #{tranNo}
+		WHERE TRAN_NO = #{value}
 	</select>
-	
-	
 	
 	
 	

@@ -136,9 +136,10 @@ function fncGetList(currentPage) {
 		
 		<td align="left">${product.price}</td>
 	
+	
+	
 		<c:if test="${param.menu eq 'search'}">
-		<td align="left">${product.prodDetail}</td>
-			</c:if>
+		<td align="left">${product.prodDetail}</td></c:if>	
 		
 		<c:if test="${param.menu eq 'manage'}">
 		<td align="left">${product.regDate}</td>	
@@ -155,17 +156,17 @@ function fncGetList(currentPage) {
 	
 		<c:if test="${param.menu.equals('manage')}">			
 		<c:choose>	
-			<c:when test="${product.proTranCode.equals('0')}">
+			<c:when test="${purchase.tranCode eq '0  '}">
 				판매중
 			</c:when>
-			<c:when test="${product.proTranCode.equals('1')}">
+			<c:when test="${purchase.tranCode eq '1  '}">
 				구매완료 <a href= "/updateTranCodeByProd.do?prodNo=${product.prodNo}&tranCode=2">배송하기</a>
 			</c:when>
-			<c:when test="${product.proTranCode.equals('2')}">
+			<c:when test="${product.prodTranCode.equals('2')}">
 				배송중
 			</c:when>
 			<c:otherwise>
-				배송완료
+				구매완료 
 			</c:otherwise>
 		</c:choose>
 		</c:if>
